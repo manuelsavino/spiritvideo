@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@mikecousins/react-pdf": "^5.5.1",
     "autoprefixer": "^10.2.3",
     "axios": "^0.21.1",
     "next": "10.0.5",
