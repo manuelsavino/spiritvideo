@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
 export default function Home() {
   const { register, handleSubmit, watch, errors } = useForm();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const onSubmit = (data) => {
+    setLoading(true);
     fetch(
       `/api/logVideo?firstName=${data.firstName}&lastName=${data.lastName}&email=${data.email}`
     )
@@ -29,78 +32,87 @@ export default function Home() {
             access the Spirit Flight Attendant Orientation.
           </h2>
         </div>
-        <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
-          <div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10'>
-            <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
-              <div>
-                <label
-                  htmlFor='email'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  First Name
-                </label>
-                <div className='mt-1'>
-                  <input
-                    id='firstName'
-                    name='firstName'
-                    type='firstName'
-                    autoComplete='given-name'
-                    required
-                    ref={register}
-                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-                  />
+        {!loading && (
+          <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
+            <div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10'>
+              <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
+                <div>
+                  <label
+                    htmlFor='email'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    First Name
+                  </label>
+                  <div className='mt-1'>
+                    <input
+                      id='firstName'
+                      name='firstName'
+                      type='firstName'
+                      autoComplete='given-name'
+                      required
+                      ref={register}
+                      className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                    />
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label
-                  htmlFor='lastname'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Last Name
-                </label>
-                <div className='mt-1'>
-                  <input
-                    id='lastName'
-                    name='lastName'
-                    type='text'
-                    autoComplete='family-name'
-                    required
-                    ref={register}
-                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-                  />
+                <div>
+                  <label
+                    htmlFor='lastname'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Last Name
+                  </label>
+                  <div className='mt-1'>
+                    <input
+                      id='lastName'
+                      name='lastName'
+                      type='text'
+                      autoComplete='family-name'
+                      required
+                      ref={register}
+                      className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                    />
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label
-                  htmlFor='email'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Email
-                </label>
-                <div className='mt-1'>
-                  <input
-                    id='email'
-                    name='email'
-                    type='email'
-                    autoComplete='email'
-                    required
-                    ref={register}
-                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-                  />
+                <div>
+                  <label
+                    htmlFor='email'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Email
+                  </label>
+                  <div className='mt-1'>
+                    <input
+                      id='email'
+                      name='email'
+                      type='email'
+                      autoComplete='email'
+                      required
+                      ref={register}
+                      className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div>
-                <button
-                  type='submit'
-                  className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-yellow  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-                >
-                  Continue
-                </button>
-              </div>
-            </form>
+                <div>
+                  <button
+                    type='submit'
+                    className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-yellow  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                  >
+                    Continue
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
+        )}
+        {loading && (
+          <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
+            <div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 flex justify-center'>
+              <img src='/loading.svg' />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
