@@ -2,7 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-.react-pdf__Page__canvas {
-  width: 100% !important;
+#ResumeContainer {
+  margin: auto;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+/* .PDFDocument {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+.PDFPage > canvas {
+  width: 900px !important;
+  max-width: 100%;
   height: auto !important;
+}
+
+@media screen and (orientation: landscape) {
+  #ResumeContainer {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    width: 85%;
+  }
 }
