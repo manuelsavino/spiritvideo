@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Spirit Flight Attendant Orientation</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className='bg-gray-50 min-h-screen flex items-center justify-center'>

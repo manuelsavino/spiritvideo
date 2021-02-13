@@ -1,10 +1,10 @@
 import fetch from 'node-fetch';
 
 export default async (req, res) => {
-  const { firstName, lastName } = req.query;
+  const { firstName, lastName, email } = req.query;
 
   var raw = JSON.stringify({
-    records: [{ fields: { firstName, lastName } }],
+    records: [{ fields: { firstName, lastName, email } }],
   });
 
   var requestOptions = {

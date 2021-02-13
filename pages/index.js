@@ -6,7 +6,9 @@ export default function Home() {
   const { register, handleSubmit, watch, errors } = useForm();
   const router = useRouter();
   const onSubmit = (data) => {
-    fetch(`/api/logVideo?firstName=${data.firstName}&lastName=${data.lastName}`)
+    fetch(
+      `/api/logVideo?firstName=${data.firstName}&lastName=${data.lastName}&email=${data.email}`
+    )
       .then((resp) => resp.json())
       .then(() => {
         router.push('/video');
