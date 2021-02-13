@@ -33,8 +33,8 @@ export default function Home() {
           </h2>
         </div>
         {!loading && (
-          <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
-            <div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10'>
+          <div className='mt-8 sm:mx-auto w-5/6 mx-auto sm:max-w-md'>
+            <div className='bg-white py-8 px-4 shadow rounded-lg sm:px-10'>
               <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
                 <div>
                   <label
